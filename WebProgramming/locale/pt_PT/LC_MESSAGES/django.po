@@ -1,0 +1,323 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-14 02:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: budgeteer/templates/budgeteer/dashboard.html:16
+#: budgeteer/templates/budgeteer/dashboard.html:24
+#: budgeteer/templates/budgeteer/manageAccounts.html:25
+#: budgeteer/templates/budgeteer/manageObjectives.html:20
+msgid "Dashboard"
+msgstr "Central de Controlo"
+
+#: budgeteer/templates/budgeteer/dashboard.html:25
+#: budgeteer/templates/budgeteer/manageAccounts.html:26
+#: budgeteer/templates/budgeteer/manageObjectives.html:21
+msgid "Manage Accounts"
+msgstr "Gerir Contas"
+
+#: budgeteer/templates/budgeteer/dashboard.html:26
+#: budgeteer/templates/budgeteer/manageAccounts.html:27
+#: budgeteer/templates/budgeteer/manageObjectives.html:22
+msgid "Manage Objectives"
+msgstr "Gerir Objectivos"
+
+#: budgeteer/templates/budgeteer/dashboard.html:27
+#: budgeteer/templates/budgeteer/manageAccounts.html:28
+#: budgeteer/templates/budgeteer/manageObjectives.html:23
+msgid "Log Out!"
+msgstr "Desconectar"
+
+#: budgeteer/templates/budgeteer/dashboard.html:36
+msgid "Your Current Balance Is"
+msgstr "O Seu Saldo Actual É"
+
+#: budgeteer/templates/budgeteer/dashboard.html:47
+msgid "This month expenses"
+msgstr "Despesas deste mês"
+
+#: budgeteer/templates/budgeteer/dashboard.html:50
+#: budgeteer/templates/budgeteer/editObjective.html:76
+#: budgeteer/templates/budgeteer/manageObjectives.html:82
+msgid "Amount"
+msgstr "Quantia"
+
+#: budgeteer/templates/budgeteer/dashboard.html:51
+msgid "Account"
+msgstr "Conta"
+
+#: budgeteer/templates/budgeteer/dashboard.html:52
+#: budgeteer/templates/budgeteer/editAccount.html:35
+#: budgeteer/templates/budgeteer/editObjective.html:35
+#: budgeteer/templates/budgeteer/manageAccounts.html:40
+#: budgeteer/templates/budgeteer/manageObjectives.html:33
+msgid "Description"
+msgstr "Descrição"
+
+#: budgeteer/templates/budgeteer/dashboard.html:53
+msgid "Date"
+msgstr "Data"
+
+#: budgeteer/templates/budgeteer/dashboard.html:75
+msgid "Add Expense"
+msgstr "Adicionar Despesa"
+
+#: budgeteer/templates/budgeteer/dashboard.html:78
+msgid "Amount: "
+msgstr "Quantia: "
+
+#: budgeteer/templates/budgeteer/dashboard.html:79
+msgid "Description: "
+msgstr "Descrição: "
+
+#: budgeteer/templates/budgeteer/dashboard.html:80
+msgid "Account: "
+msgstr "Conta: "
+
+#: budgeteer/templates/budgeteer/dashboard.html:86
+msgid "Date: "
+msgstr "Data: "
+
+#: budgeteer/templates/budgeteer/dashboard.html:87
+#: budgeteer/templates/budgeteer/manageAccounts.html:86
+#: budgeteer/templates/budgeteer/manageObjectives.html:90
+msgid "Add"
+msgstr "Adicionar"
+
+#: budgeteer/templates/budgeteer/editAccount.html:29
+msgid "Currently Editing Account"
+msgstr "A Editar a Conta"
+
+#: budgeteer/templates/budgeteer/editAccount.html:34
+#: budgeteer/templates/budgeteer/editAccount.html:68
+#: budgeteer/templates/budgeteer/manageAccounts.html:39
+#: budgeteer/templates/budgeteer/manageAccounts.html:83
+msgid "Account Name"
+msgstr "Nome da Conta"
+
+#: budgeteer/templates/budgeteer/editAccount.html:36
+#: budgeteer/templates/budgeteer/manageAccounts.html:41
+msgid "Current"
+msgstr "Balanço"
+
+#: budgeteer/templates/budgeteer/editAccount.html:37
+#: budgeteer/templates/budgeteer/manageAccounts.html:42
+msgid "Last Updated"
+msgstr "Ultima Actualização"
+
+#: budgeteer/templates/budgeteer/editAccount.html:38
+#: budgeteer/templates/budgeteer/editAccount.html:54
+#: budgeteer/templates/budgeteer/editObjective.html:38
+#: budgeteer/templates/budgeteer/editObjective.html:56
+#: budgeteer/templates/budgeteer/manageAccounts.html:43
+#: budgeteer/templates/budgeteer/manageAccounts.html:62
+#: budgeteer/templates/budgeteer/manageObjectives.html:36
+#: budgeteer/templates/budgeteer/manageObjectives.html:56
+msgid "Delete"
+msgstr "Apagar"
+
+#: budgeteer/templates/budgeteer/editAccount.html:65
+#: budgeteer/templates/budgeteer/editAccount.html:71
+#: budgeteer/templates/budgeteer/editObjective.html:67
+#: budgeteer/templates/budgeteer/editObjective.html:84
+#: budgeteer/templates/budgeteer/manageAccounts.html:44
+#: budgeteer/templates/budgeteer/manageAccounts.html:68
+#: budgeteer/templates/budgeteer/manageObjectives.html:37
+#: budgeteer/templates/budgeteer/manageObjectives.html:62
+msgid "Edit"
+msgstr "Editar"
+
+#: budgeteer/templates/budgeteer/editAccount.html:69
+#: budgeteer/templates/budgeteer/manageAccounts.html:84
+msgid "Description:"
+msgstr "Descrição:"
+
+#: budgeteer/templates/budgeteer/editObjective.html:29
+msgid "Currently Editing Objective"
+msgstr "A Editar o Objectivo"
+
+#: budgeteer/templates/budgeteer/editObjective.html:34
+#: budgeteer/templates/budgeteer/manageObjectives.html:32
+msgid "Objective Name"
+msgstr "Nome"
+
+#: budgeteer/templates/budgeteer/editObjective.html:36
+#: budgeteer/templates/budgeteer/editObjective.html:83
+#: budgeteer/templates/budgeteer/manageObjectives.html:34
+#: budgeteer/templates/budgeteer/manageObjectives.html:89
+msgid "Deadline"
+msgstr "Data Limite"
+
+#: budgeteer/templates/budgeteer/editObjective.html:37
+#: budgeteer/templates/budgeteer/manageObjectives.html:35
+msgid "Completed"
+msgstr "Successo"
+
+#: budgeteer/templates/budgeteer/editObjective.html:47
+#: budgeteer/templates/budgeteer/manageObjectives.html:47
+msgid "Yes"
+msgstr "Sim"
+
+#: budgeteer/templates/budgeteer/editObjective.html:49
+#: budgeteer/templates/budgeteer/manageObjectives.html:49
+msgid "No"
+msgstr "Não"
+
+#: budgeteer/templates/budgeteer/editObjective.html:51
+#: budgeteer/templates/budgeteer/manageObjectives.html:51
+msgid "In Progress"
+msgstr "Em Progresso"
+
+#: budgeteer/templates/budgeteer/editObjective.html:71
+#: budgeteer/templates/budgeteer/manageObjectives.html:77
+msgid "Name"
+msgstr "Nome"
+
+#: budgeteer/templates/budgeteer/editObjective.html:73
+#: budgeteer/templates/budgeteer/manageObjectives.html:79
+msgid "Don't spend more than"
+msgstr "Não gastar mais do que"
+
+#: budgeteer/templates/budgeteer/editObjective.html:74
+#: budgeteer/templates/budgeteer/manageObjectives.html:80
+msgid "Have more than"
+msgstr "Ter mais do que"
+
+#: budgeteer/templates/budgeteer/index.html:24
+msgid "Sign In/Register"
+msgstr "Entrar/Registar"
+
+#: budgeteer/templates/budgeteer/index.html:30
+msgid " Watch our Demonstration! "
+msgstr " Veja a nossa Demonstração! "
+
+#: budgeteer/templates/budgeteer/index.html:38
+msgid "Sign Up for FREE now!"
+msgstr "Registe-se GRÁTIS agora!"
+
+#: budgeteer/templates/budgeteer/index.html:41
+msgid "Keep an eye on your budget"
+msgstr "Esteja de olho no seu orçamento"
+
+#: budgeteer/templates/budgeteer/index.html:42
+msgid "Add expenses/income"
+msgstr "Adicione despesas/rendimentos"
+
+#: budgeteer/templates/budgeteer/index.html:43
+msgid "Track your expenses"
+msgstr "Controle as suas despesas"
+
+#: budgeteer/templates/budgeteer/index.html:44
+msgid "Set objectives!"
+msgstr "Crie objectivos!"
+
+#: budgeteer/templates/budgeteer/index.html:58
+#: budgeteer/templates/budgeteer/index.html:96
+msgid "Sign In"
+msgstr "Entrar"
+
+#: budgeteer/templates/budgeteer/index.html:59
+msgid "Register"
+msgstr "Registar"
+
+#: budgeteer/templates/budgeteer/index.html:60
+msgid "Why?"
+msgstr "Porquê?"
+
+#: budgeteer/templates/budgeteer/index.html:67
+msgid "You need to have an account to use our web app!"
+msgstr "Tem que ter uma conta para usar a nossa aplicação web!"
+
+#: budgeteer/templates/budgeteer/index.html:77
+#: budgeteer/templates/budgeteer/index.html:113
+msgid "User Name:"
+msgstr "Nome de Utilizador"
+
+#: budgeteer/templates/budgeteer/index.html:138
+msgid "Re-Enter Password:"
+msgstr "Re-Insira a Password"
+
+#: budgeteer/templates/budgeteer/index.html:149
+
+msgid "Sign Up"
+msgstr "Registar"
+
+#: budgeteer/templates/budgeteer/index.html:160
+msgid "Close"
+msgstr "Fechar"
+
+#: budgeteer/templates/budgeteer/index.html:168
+msgid "About"
+msgstr "Sobre"
+
+#: budgeteer/templates/budgeteer/manageAccounts.html:34
+msgid "Your Current Accounts Are"
+msgstr "As Suas Contas São"
+
+#: budgeteer/templates/budgeteer/manageAccounts.html:80
+msgid "Add Account"
+msgstr "Criar Conta"
+
+#: budgeteer/templates/budgeteer/manageAccounts.html:85
+msgid "Balance:"
+msgstr "Saldo:"
+
+#: budgeteer/templates/budgeteer/manageObjectives.html:27
+msgid "Your Current Objectives Are"
+msgstr "Os Seus Objectivos São"
+
+#: budgeteer/templates/budgeteer/manageObjectives.html:73
+msgid "Add Objective"
+msgstr "Adicionar Objectivo"
+
+#. Translators: This error message appears on the login form in case of error
+#: budgeteer/views.py:23 budgeteer/views.py:34
+msgid "Invalid Login"
+msgstr "Login Inválido"
+
+#. Translators: This error message appears on the signup form in case the email is already in use
+#: budgeteer/views.py:50
+msgid "Email already in use"
+msgstr "Email já em uso"
+
+#. Translators: This error message appears on the signup form in case the user doesnt type two matchin passwords
+#: budgeteer/views.py:55
+msgid "Passwords don't match"
+msgstr "As Passwords não coincidem"
+
+#. Translators: Translating the description that is created with base on the objective that the user picked
+#: budgeteer/views.py:232 budgeteer/views.py:305
+msgid "Don't spend more than "
+msgstr "Não gastar mais do que"
+
+#: budgeteer/views.py:232 budgeteer/views.py:305
+msgid "eur from "
+msgstr "euros da conta "
+
+#: budgeteer/views.py:232 budgeteer/views.py:235 budgeteer/views.py:305
+#: budgeteer/views.py:308
+msgid " account"
+msgstr " conta"
+
+#. Translators: Translating the description that is created with base on the objective that the user picked
+#: budgeteer/views.py:235 budgeteer/views.py:308
+msgid "Have more than "
+msgstr "Ter mais do que"
+
+#: budgeteer/views.py:235 budgeteer/views.py:308
+msgid "eur in "
+msgstr "euros na conta"

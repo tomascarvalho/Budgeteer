@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang= "en">
+
+<head>
+
+    {% load static %}
+    {% load i18n %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/CSS.css' %}">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Budgeteer will help you control your money and manage your expenses">
+    <meta name="author" content="Tomás Carvalho">
+
+    <title>{% blocktrans %}Dashboard{% endblocktrans %}</title>
+</head>
+
+<body id = "dashboard">
+
+    <nav class = "navbar">
+        <ul class = "ul-menu">
+            <li> <a class = "li-menu" href = "{% url 'dashboard' %}"> <img src = "{%static 'imgs/logo1.png' %}" alt = "logo"/> </a></li>
+            <li> <a class = "li-menu active" href = "{% url 'dashboard' %}">{% blocktrans %}Dashboard{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu" href = "{% url 'manageAccounts' %}">{% blocktrans %}Manage Accounts{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu" href = "{% url 'manageObjectives' %}">{% blocktrans %}Manage Objectives{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu" style = "float:right" href = "{% url 'logout' %}">{% blocktrans %}Log Out!{% endblocktrans %}</a></li>
+        </ul>
+    </nav>
+    <div>
+        <div>
+            <!-- Graph with Balance Over Time -->
+        </div>
+        <div>
+            <!-- My current Balance -->
+            <h1 class = "centered">{% blocktrans %}Your Current Balance Is{% endblocktrans %}</h1>
+            {% if user_balance < 0 %}
+                <h1 class = "centered negative"> {{ user_balance }}€ </h1>
+            {% else %}
+                <h1 class = "centered positive"> {{ user_balance }}€ </h1>
+            {% endif %}
+
+        </div>
+        <div>
+            <!-- Table with latest changes in my accounts -->
+            <table id = "tableDashboard" class = "centered-list widthCentered">
+                <caption>{% blocktrans %}This month expenses{% endblocktrans %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% blocktrans %}Amount{% endblocktrans %}</th>
+                        <th>{% blocktrans %}Account{% endblocktrans %}</th>
+                        <th>{% blocktrans %}Description{% endblocktrans %}</th>
+                        <th>{% blocktrans %}Date{% endblocktrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in last_transactions %}
+                        <tr>
+                            {% if transaction.amount < 0 %}
+                                <td class = "negative">{{ transaction.amount }}€</td>
+                            {% else %}
+                                <td class = "positive">{{ transaction.amount }}€</td>
+                            {% endif %}
+                            <td> {{ transaction.account.name }} </td>
+                            <td> {{ transaction.description }} </td>
+                            <td> {{ transaction.date }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class = "marginDiv">
+            <!-- Add New Expense! -->
+            <h3 class = "centered">{% blocktrans %}Add Expense{% endblocktrans %}</h3>
+            <form class = "centered-list" action = "{% url 'new_transaction' %}" method ="post">
+                {% csrf_token %}
+                <label>{% blocktrans %}Amount: {% endblocktrans %}<input id = "amount" type ="number" name = "amount" required/></label>
+                <label>{% blocktrans %}Description: {% endblocktrans %}<input id = "description" type ="text" name ="description"/> </label>
+                <label>{%blocktrans %}Account: {% endblocktrans %}<select id = "account" name = "account" required>
+                    {% for account in user_accounts %}
+                        <option value  = "{{ account.id }}">{{ account.name }}</option>
+                    {% endfor %}
+                </select>
+                </label>
+                <label>{% blocktrans %}Date: {% endblocktrans %}<input id = "date" type = "date" name ="date" required /> </label>
+                <label><input class = "addButton" id = "addExpenseButton" type = "submit" value = "{% blocktrans %}Add{% endblocktrans %}" onclick="addExpense()"/></label>
+            </form>
+        </div>
+
+    </div>
+    <footer>
+
+        {% get_available_languages as languages %}
+
+        {% for lang_code, lang_name in languages %}
+          {% language lang_code %}
+            <a href="{% url 'index' %}">{{ lang_name }}</a>
+          {% endlanguage %}
+        {% endfor %}
+    </footer>
+    <script type="text/javascript" src="{% static 'javascript/javascript.js' %}"></script>
+</body>
+</html>

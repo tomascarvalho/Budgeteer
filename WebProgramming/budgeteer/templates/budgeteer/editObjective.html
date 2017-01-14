@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang= "en">
+
+<head>
+    {% load static %}
+    {% load i18n %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/CSS.css' %}">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Budgeteer will help you control your money and manage your expenses">
+    <meta name="author" content="Tomás Carvalho">
+
+    <title>Budgeteer</title>
+</head>
+<body id = "manageAccounts">
+
+    <nav class = "navbar">
+        <ul class = "ul-menu">
+            <li> <a class = "li-menu" href = "{% url 'dashboard' %}"> <img src = "{%static 'imgs/logo1.png' %}" alt = "logo"/> </a></li>
+            <li> <a class = "li-menu" href = "{% url 'dashboard' %}"> Dashboard</a></li>
+            <li> <a class = "li-menu" href = "{% url 'manageAccounts' %}"> Manage Accounts </a></li>
+            <li> <a class = "li-menu active" href = "{% url 'manageObjectives' %}"> Manage Objectives </a></li>
+            <li> <a class = "li-menu" style = "float:right" href = "{% url 'logout' %}"> Log Out!</a></li>
+        </ul>
+    </nav>
+    <div> </div>
+    <div> <h1 class = "centered">{% trans "Currently Editing Objective" %}</h1></div>
+    <div>
+        <table id = "tableAccManagement" class = "tableManagement centered-list widthCentered">
+            <thead>
+                <tr>
+                    <th class = "thManagement">{% trans "Objective Name" %}</th>
+                    <th class = "thManagement">{% trans "Description" %}</th>
+                    <th class = "thManagement">{% trans "Deadline" %}</th>
+                    <th class = "thManagement">{% trans "Completed" %}</th>
+                    <th class = "thManagement">{% trans "Delete" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td  contenteditable = "false" class = "tdManagement">{{ objective.name }}</td>
+                    <td  contenteditable = "false" class = "tdManagement">{{ objective.description }}</td>
+                    <td contenteditable = "false" class = "tdManagement">{{ objective.deadline }}</td>
+                    {% if objective.completed == 'Y' %}
+                        <td class = "thManagement positive">{% trans "Yes" %}</td>
+                    {% elif objective.completed == 'N' %}
+                        <td class = "thManagement negative">{% trans "No" %}</td>
+                    {% else %}
+                        <td class = "thManagement">{% trans "In Progress" %}</td>
+                    {% endif %}
+                    <td class = "tdManagement">
+                        <form method = "post" action = "{% url 'del_objective' %}">
+                            {% csrf_token %}
+                            <button type = "submit" name ="obj_id" value = "{{ objective.id }}">{% trans "Delete" %}</button>
+                        </form>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+        <div>
+            <!-- Add New Account! -->
+            <h3 class = "centered">{% trans "Edit" %} </h3>
+            <form  class = "centered-list objetives" action = "{% url 'edit_objective' objective.id %}" method ="post">
+                {% csrf_token %}
+                <div class = "objectives">
+                    <label>{% trans "Name"%}<input id = "name" type = "text" name = "name" value = "{{ objective.name }}"></label>
+                    <select id = "option" name = "option">
+                        <option value = "Spend">{% trans "Don't spend more than" %}</option>
+                        <option value = "Have">{% trans "Have more than" %}</option>
+                    </select>
+                    <label>{% trans "Amount"%}<input id = "amount" type = "number" name = "amount" value = "{{ objective.amount }}"required/></label>
+                    <select id = "account" name = "account">
+                        {% for acc in user_accounts %}
+                            <option value  = "{{ acc.id }}">{{ acc.name }}</option>
+                        {% endfor %}
+
+                    </select>
+                    <label>{% trans "Deadline" %}<input id = "date" type = "date" name = "deadline" value = "{{ objective.deadline }}" required/></label>
+                    <label> <input id = "addObjectiveButton" class = "addButton" type = "submit" value = "{% trans "Edit" %}"/></label>
+
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript" src="{% static 'javascript/javascript.js' %}"></script>
+
+    </div>
+    <footer>
+
+        {% get_available_languages as languages %}
+
+        {% for lang_code, lang_name in languages %}
+          {% language lang_code %}
+            <a href="{% url 'index' %}">{{ lang_name }}</a>
+          {% endlanguage %}
+        {% endfor %}
+    </footer>
+</body>
+</html>

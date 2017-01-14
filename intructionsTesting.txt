@@ -1,0 +1,63 @@
+Unit testing:
+
+Functional test:
+    Test models - Criar testes.py com o nome do que estamos a testar, por exemplo: test_models.py
+    Jenkins
+
+    Selenium - Test the website
+
+    jMeter - Test the server:
+        Add thread group
+        Add config-element http request defaults
+        Add config-eemnt http cookie manager
+        add sampler http request
+        add listener view results
+        add post processor css/jquery extractor : input[name='csrfmidlewaretoken'] atribut: value reference name_ CSRF
+        then on login also send csrfmidlewaretoken with value ${CSRF}
+
+        add listener graph results for graphs
+        save graph at the endGame
+
+
+translate to language {% load i18n %}
+{% blocktranslate %}
+{% endblocktranslate %}
+
+python manage.py makemessages
+python manage.py compilemessages?
+
+
+url.py
+
+from django,conf.urls.i18n import i18_paterns
+
+add:
+urlpatterns += i18n_patterns(
+    url(r, include('budgeteer.urls'))
+)
+
+
+add to settings.py:
+
+LANGUAGES = [('pt-pt', 'Portuguese'),
+    ('en-us', English)]
+
+add to middleware:
+'django.middleware.locale.LocaleMiddleware'
+
+Sphinx for documentation: pip install sphinx
+
+Go to config.py ( sphinx)
+import os
+import sys
+sys cenas
+os.eviron['DJANGO_SETTINGS_MODULE'] = 'budgeteer.settings'
+import django
+django.setup()
+
+create models.rst
+models
+======
+.. automodule:: budgeteer.models
+    :members:
+then insert models to index.rst

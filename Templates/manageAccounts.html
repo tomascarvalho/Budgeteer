@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang= "en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="source/css/CSS.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Budgeteer will help you control your money and manage your expenses">
+    <meta name="author" content="Tomás Carvalho">
+
+    <title>Budgeteer</title>
+</head>
+<body id = "manageAccounts">
+
+    <nav class = "navbar">
+        <ul class = "ul-menu">
+            <li> <a class = "li-menu" href = "dashboard.html"> <img src = "source/imgs/logo1.png" alt = "logo"/> </a></li>
+            <li> <a class = "li-menu" href = "dashboard.html"> Dashboard</a></li>
+            <li> <a class = "li-menu active" href = "manageAccounts.html"> Manage Accounts </a></li>
+            <li> <a class = "li-menu" href ="manageObjectives.html"> Manage Objectives </a></li>
+            <li> <a class = "li-menu" style = "float:right" href = "index.html"> Log Out!</a></li>
+        </ul>
+    </nav>
+    <div> </div>
+    <div> <h1 class = "centered">Your Current Accounts Are</h1></div>
+    <div>
+        <table id = "tableAccManagement" class = "tableManagement centered-list widthCentered">
+            <thead>
+                <tr>
+                    <th class = "thManagement">Account Name</th>
+                    <th class = "thManagement">Description</th>
+                    <th class = "thManagement">Current</th>
+                    <th class = "thManagement">Last Updated</th>
+                    <th class = "thManagement">Delete</th>
+                    <th class = "thManagement">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id = "row1_col1" contenteditable = "false" class = "tdManagement">Savings</td>
+                    <td id = "row1_col2" contenteditable = "false" class = "tdManagement">My savings account</td>
+                    <td id = "row1_col3" contenteditable = "false" class = "tdManagement positive">200€</td>
+                    <td class = "tdManagement">2016-11-02</td>
+                    <td class = "tdManagement">
+                        <form method = "post">
+                            <input type = "button" value = "Delete"/>
+                        </form>
+                    </td>
+                    <td class = "tdManagement">
+                        <button id = "editRow" value = "1">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td id = "row2_col1" contenteditable = "false" class = "tdManagement">Wallet</td>
+                    <td id = "row2_col2" contenteditable = "false" class = "tdManagement">My daily money</td>
+                    <td id = "row2_col3" contenteditable = "false" class = "tdManagement positive">200€</td>
+                    <td class = "tdManagement">2016-11-10</td>
+                    <td class = "tdManagement">
+                        <form method = "post">
+                            <input type = "button" value = "Delete"/>
+                        </form>
+                    </td>
+                    <td class = "tdManagement">
+                        <button id = "editRow2" value = "2">Edit</button>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td id = "row3_col1" contenteditable = "false" class = "tdManagement">Current Account</td>
+                    <td id = "row3_col2" contenteditable = "false" class = "tdManagement">My bank account for day-to-day expenses</td>
+                    <td id = "row3_col3" contenteditable = "false" class = "tdManagement positive">200€</td>
+                    <td class = "tdManagement">2016-11-16</td>
+                    <td class = "tdManagement">
+                        <form method = "post">
+                            <input type = "button" value = "Delete"/>
+                        </form>
+                    </td>
+                    <td class = "tdManagement">
+                        <button id = "editRow3" value = "3">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <div>
+            <!-- Add New Account! -->
+            <h3 class = "centered"> Add Account </h3>
+            <form  class = "centered-list" action = "submit" method ="post">
+                <label> Account Name <input id = "name" type ="text" name = "accName" required/></label>
+                <label> Description: <input id = "description" type ="text" name ="description"/> </label>
+                <label> Balance: <input id = "balance" type = "number" name = "balance" required/> </label>
+                <label><input id = "addAccountButton" class = "addButton" type = "button" value = "Add" onclick="addAccount()"/></label>
+            </form>
+        </div>
+
+    </div>
+    <script src = "source/javascript/javascript.js"></script>
+</body>
+</html>

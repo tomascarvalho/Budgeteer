@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang= "en">
+
+<head>
+    {% load static %}
+    {% load i18n %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/CSS.css' %}">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Budgeteer will help you control your money and manage your expenses">
+    <meta name="author" content="Tomás Carvalho">
+
+    <title>Budgeteer</title>
+</head>
+<body id = "manageAccounts">
+
+    <nav class = "navbar">
+        <ul class = "ul-menu">
+
+            <nav class = "navbar">
+                <ul class = "ul-menu">
+                    <li> <a class = "li-menu" href = "{% url 'dashboard' %}"> <img src = "{%static 'imgs/logo1.png' %}" alt = "logo"/> </a></li>
+                    <li> <a class = "li-menu" href = "{% url 'dashboard' %}">{% blocktrans %}Dashboard{% endblocktrans %}</a></li>
+                    <li> <a class = "li-menu active" href = "{% url 'manageAccounts' %}">{% blocktrans %}Manage Accounts{% endblocktrans %}</a></li>
+                    <li> <a class = "li-menu" href = "{% url 'manageObjectives' %}">{% blocktrans %}Manage Objectives{% endblocktrans %}</a></li>
+                    <li> <a class = "li-menu" style = "float:right" href = "{% url 'logout' %}">{% blocktrans %}Log Out!{% endblocktrans %}</a></li>
+                </ul>
+            </nav>
+        </ul>
+    </nav>
+    <div> </div>
+    <div> <h1 class = "centered">{% blocktrans %}Your Current Accounts Are{% endblocktrans %}</h1></div>
+    <div>
+        <table id = "tableAccManagement" class = "tableManagement centered-list widthCentered">
+            <thead>
+                <tr>
+                    <th class = "thManagement">{% trans "Account Name" %}</th>
+                    <th class = "thManagement">{% trans "Description" %}</th>
+                    <th class = "thManagement">{% trans "Current" %}</th>
+                    <th class = "thManagement">{% trans "Last Updated" %}</th>
+                    <th class = "thManagement">{% trans "Delete" %}</th>
+                    <th class = "thManagement">{% trans "Edit" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for account in user_accounts %}
+                    <tr>
+                        <td id = "row{{ forloop.counter }}_col1" contenteditable = "false" class = "tdManagement">{{ account.name }}</td>
+                        <td id = "row{{ forloop.counter }}_col2" contenteditable = "false" class = "tdManagement">{{ account.description }}</td>
+                        {% if account.balance < 0 %}
+                            <td id = "row{{ forloop.counter }}_col3" contenteditable = "false" class = "tdManagement negative">{{ account.balance }}€</td>
+                        {% else %}
+                            <td id = "row{{ forloop.counter }}_col3" contenteditable = "false" class = "tdManagement positive">{{ account.balance }}€</td>
+                        {% endif %}
+                        <td class = "tdManagement">{{ account.last_update }}</td>
+                        <td class = "tdManagement">
+                            <form method = "post" action = "{% url 'del_account' %}">
+                                {% csrf_token %}
+                                <button type = "submit" name ="acc_id" value = "{{ account.pk }}">{%trans "Delete" %}</button>
+                            </form>
+                        </td>
+                        <td class = "tdManagement">
+                            <form method = "post"  action = "{% url 'account' account.id %}">
+                                {% csrf_token %}
+                                <button id = "edit">{% trans "Edit" %}</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+        <div>
+            <!-- Add New Account! -->
+            <h3 class = "centered">{% trans "Add Account" %}</h3>
+            <form  class = "centered-list" action = "{% url 'new_account' %}" method ="post">
+                {% csrf_token %}
+                <label>{% trans "Account Name" %}<input id = "name" type ="text" name = "accName" required/></label>
+                <label>{% trans "Description:" %}<input id = "description" type ="text" name ="description"/> </label>
+                <label>{% trans "Balance:" %}<input id = "balance" type = "number" name = "balance" required/> </label>
+                <label><input id = "addAccountButton" class = "addButton" type = "submit" value = "{% trans "Add" %}" onclick="addAccount()"/></label>
+            </form>
+        </div>
+        <script type="text/javascript" src="{% static 'javascript/javascript.js' %}"></script>
+
+    </div>
+    <footer>
+
+        {% get_available_languages as languages %}
+
+        {% for lang_code, lang_name in languages %}
+          {% language lang_code %}
+            <a href="{% url 'index' %}">{{ lang_name }}</a>
+          {% endlanguage %}
+        {% endfor %}
+    </footer>
+
+</body>
+</html>

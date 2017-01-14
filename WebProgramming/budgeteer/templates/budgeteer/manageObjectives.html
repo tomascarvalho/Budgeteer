@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang= "en">
+
+<head>
+    {% load static %}
+    {% load i18n %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/CSS.css' %}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Budgeteer will help you control your money and manage your expenses">
+    <meta name="author" content="Tomás Carvalho">
+
+    <title>Budgeteer</title>
+</head>
+<body id = "manageObjectives">
+    <nav class = "navbar">
+        <ul class = "ul-menu">
+            <li> <a class = "li-menu" href = "{% url 'dashboard' %}"> <img src = "{%static 'imgs/logo1.png' %}" alt = "logo"/> </a></li>
+            <li> <a class = "li-menu" href = "{% url 'dashboard' %}">{% blocktrans %}Dashboard{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu" href = "{% url 'manageAccounts' %}">{% blocktrans %}Manage Accounts{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu active" href = "{% url 'manageObjectives' %}">{% blocktrans %}Manage Objectives{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu" style = "float:right" href = "{% url 'logout' %}">{% blocktrans %}Log Out!{% endblocktrans %}</a></li>
+        </ul>
+    </nav>
+
+    <div> <h1 class = "centered">{% trans "Your Current Objectives Are" %}</h1></div>
+    <div>
+        <table id = "tableObjManagement" class = "tableManagement centered-list widthCentered">
+            <thead>
+                <tr>
+                    <th class = "thManagement">{% trans "Objective Name" %}</th>
+                    <th class = "thManagement">{% trans "Description" %}</th>
+                    <th class = "thManagement">{% trans "Deadline" %}</th>
+                    <th class = "thManagement">{% trans "Completed" %}</th>
+                    <th class = "thManagement">{% trans "Delete" %}</th>
+                    <th class = "thManagement">{% trans "Edit" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for objective in user_objectives %}
+                <tr>
+                    <td class = "tdManagement">{{ objective.name }}</td>
+                    <td class = "tdManagement">{{ objective.description }}</td>
+                    <td class = "tdManagement">{{ objective.deadline }}</td>
+                    {% if objective.completed == 'Y' %}
+                        <td class = "thManagement positive">{% trans "Yes" %}</td>
+                    {% elif objective.completed == 'N' %}
+                        <td class = "thManagement negative">{% trans "No" %}</td>
+                    {% else %}
+                        <td class = "thManagement">{% trans "In Progress" %}</td>
+                    {% endif %}
+                    <td class = "tdManagement">
+                        <form method = "post" action = "{% url 'del_objective' %}">
+                            {% csrf_token %}
+                            <button type = "submit" name ="obj_id" value = "{{ objective.id }}">{% trans "Delete" %}</button>
+                        </form>
+                    </td>
+                    <td class = "tdManagement">
+                        <form method = "post"  action = "{% url 'objective' objective.id %}">
+                            {% csrf_token %}
+                            <button id = "edit">{% trans "Edit" %}</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+        <div>
+            <!-- Add New Objective! -->
+            <h3 class = "centered">{% trans "Add Objective" %}</h3>
+            <form  class = "centered-list objetives" action = "{% url 'new_objective' %}" method ="post">
+                {% csrf_token %}
+                <div class = "objectives">
+                    <label>{% trans "Name" %}<input id = "name" type = "text" name = "name"></label>
+                    <select id = "option" name = "option">
+                        <option value = "Spend">{% trans "Don't spend more than" %}</option>
+                        <option value = "Have">{% trans "Have more than" %}</option>
+                    </select>
+                    <label>{% trans "Amount" %}<input id = "amount" type = "number" name = "amount" required/></label>
+                    <select id = "account" name = "account">
+                        {% for acc in user_accounts %}
+                            <option value  = "{{ acc.id }}">{{ acc.name }}</option>
+                        {% endfor %}
+
+                    </select>
+                    <label>{% trans "Deadline" %}<input id = "date" type = "date" name = "deadline" required/></label>
+                    <label> <input id = "addObjectiveButton" class = "addButton" type = "submit" value = "{% trans "Add" %}"/></label>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <footer>
+
+        {% get_available_languages as languages %}
+
+        {% for lang_code, lang_name in languages %}
+          {% language lang_code %}
+            <a href="{% url 'index' %}">{{ lang_name }}</a>
+          {% endlanguage %}
+        {% endfor %}
+    </footer>
+    <script type="text/javascript" src="{% static 'javascript/javascript.js' %}"></script>
+</body>
+</html>
