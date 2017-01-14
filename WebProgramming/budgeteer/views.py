@@ -10,16 +10,19 @@ import decimal
 from django.utils.translation import ugettext as _
 debug = 1
 
-"""The index function.
+
+def index(request):
+    """The index function.
     This is the function that renders the first page a user will see when they arrive to the website.
     It has information about the service we provide
     Keyword arguments:
     request -- the django request object
-"""
-def index(request):
+    """
     return render(request, 'budgeteer/index.html')
 
-"""The log_in function.
+
+def log_in(request):
+    """The log_in function.
     This function receives the user email and password in the request (POST).
     Tries to fetch the user from the database, if the user doesnt exist throws an Exception
     and returns an error message.
@@ -28,19 +31,18 @@ def index(request):
     In case of insuccess it returns an error message.
     Keyword arguments:
     request -- the django request object that contains the user email and password that we want to authenticate
-"""
-def log_in(request):
+    """
     email = request.POST['email']
     try:
-        username = User.objects.get(email=email).username
+        try_user = User.objects.get(email=email)
     except (KeyError, User.DoesNotExist):
         # Translators: This error message appears on the login form in case of error
         error_message = _("Invalid Login")
         return render(request, 'budgeteer/index.html', {
             'error_message': error_message,
         })
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
+    user_password = request.POST['password']
+    user = authenticate(username=try_user.username, password=user_password)
     if user is not None:
         login(request, user)
         return HttpResponseRedirect('/budgeteer/dashboard')
@@ -52,7 +54,9 @@ def log_in(request):
         })
 
 
-"""The signup function.
+
+def signup(request):
+    """The signup function.
     This function receives the user username, email, password and password confirmation in the request POST.
     Tries to fetch the user from the database, if the user exists returns an error message.
     If the user doesn't exist it tries to create a new user.
@@ -60,13 +64,12 @@ def log_in(request):
     In case of insuccess it returns an error message.
     Keyword arguments:
     request -- the django request object that contains the user username, email, password and password confirmation that we want to create.
-"""
-def signup(request):
+    """
     try:
         username = User.objects.get(name = request.POST['name'])
     except (KeyError, User.DoesNotExist):
         if (request.POST['s_password'] == request.POST['reenterpassword']):
-            user = User.objects.create_user(request.POST.get('username', False), request.POST.get('email', False), request.POST.get('password', False))
+            user = User.objects.create_user(request.POST.get('username', False), request.POST.get('email', False), request.POST.get('s_password', False))
             login(request, user)
             return HttpResponseRedirect('/budgeteer/dashboard')
     else:
@@ -80,25 +83,27 @@ def signup(request):
     return render(request, 'budgeteer/index.html', {
         'error_message': error_message,
     })
-"""The log_out function.
+
+def log_out(request):
+    """The log_out function.
     Logs out the user from the session.
     Redirects to the index.
     Keyword arguments:
     request -- the django request object.
-"""
-def log_out(request):
+    """
     logout(request)
     return HttpResponseRedirect('/budgeteer/')
 
-"""The new_transaction function.
+
+@login_required
+def new_transaction(request):
+    """The new_transaction function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Receives the new transaction details in the request and creates a new transaction.
     Saves it in the database and redirects the user to the dashboard.
     Keyword arguments:
     request -- the django request object that contains information of the transaction that we want to create.
-"""
-@login_required
-def new_transaction(request):
+    """
     t_user = User.objects.get(pk = request.user.id)
     t_amount = decimal.Decimal(request.POST['amount'])
     t_description = request.POST['description']
@@ -111,7 +116,10 @@ def new_transaction(request):
 
     return HttpResponseRedirect('/budgeteer/dashboard/')
 
-"""The dashboard function.
+
+@login_required
+def dashboard(request):
+    """The dashboard function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that renders the dashboard page.
     Gets the user accounts and transactions from the database.
@@ -119,9 +127,7 @@ def new_transaction(request):
     Sends the objects fetched in the context variable to the template.
     Keyword arguments:
     request -- the django request object.
-"""
-@login_required
-def dashboard(request):
+    """
     user = request.user
     all_accounts = Account.objects.filter(user= user.id).order_by('name')
     total_balance = 0
@@ -139,22 +145,26 @@ def dashboard(request):
         }
     return render(request, 'budgeteer/dashboard.html', context)
 
-"""The manage_accounts function.
+
+@login_required
+def manage_accounts(request):
+    """The manage_accounts function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that renders the account management page.
     Gets the user accounts from the database.
     Sends the objects fetched in the context variable to the template.
     Keyword arguments:
     request -- the django request object.
-"""
-@login_required
-def manage_accounts(request):
+    """
     user = request.user
     user_accounts = Account.objects.filter(user=user.id).order_by('name')
     context = {'user_accounts': user_accounts}
     return render(request, 'budgeteer/manageAccounts.html', context)
 
-"""The new_account function.
+
+@login_required
+def new_account(request):
+    """The new_account function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that creates a new account.
     Receives the account information in a POST request.
@@ -162,9 +172,7 @@ def manage_accounts(request):
     Redirects to the manage accounts page.
     Keyword arguments:
     request -- the django request object.
-"""
-@login_required
-def new_account(request):
+    """
     user = request.user
     my_user = User.objects.get(pk = user.id)
     a_amount = decimal.Decimal(request.POST['balance'])
@@ -174,7 +182,10 @@ def new_account(request):
     new_account.save()
     return HttpResponseRedirect('/budgeteer/manageAccounts')
 
-"""The del_account function.
+
+@login_required
+def del_account(request):
+    """The del_account function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that deletes an account.
     Gets the account id through POST request and tries to fetch the account from the database.
@@ -184,9 +195,7 @@ def new_account(request):
     Redirects to manage accounts page.
     Keyword arguments:
     request -- the django request object which contains the account id in the POST request.
-"""
-@login_required
-def del_account(request):
+    """
     user = request.user
     try:
         my_user = User.objects.get(pk = user.id)
@@ -205,7 +214,10 @@ def del_account(request):
         account_to_delete.delete()
     return HttpResponseRedirect('/budgeteer/manageAccounts')
 
-"""The account function.
+
+@login_required
+def account(request, account_id):
+    """The account function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that renders the account detail page.
     Gets the user account from the database and checks if the user ownes it.
@@ -214,9 +226,7 @@ def del_account(request):
     Keyword arguments:
     request -- the django request object.
     account_id -- the account id.
-"""
-@login_required
-def account(request, account_id):
+    """
     user = request.user
     try:
         my_user = User.objects.get(pk= user.id)
@@ -234,7 +244,10 @@ def account(request, account_id):
     }
     return render(request, 'budgeteer/editAccount.html', context)
 
-"""The edit_account function.
+
+@login_required
+def edit_account(request, account_id):
+    """The edit_account function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that allows the user to edit an account.
     Gets the user account from the database and checks if the user ownes it.
@@ -245,9 +258,7 @@ def account(request, account_id):
     Keyword arguments:
     request -- the django request object.
     account_id -- the account id.
-"""
-@login_required
-def edit_account(request, account_id):
+    """
     user = request.user
     try:
         my_user = User.objects.get(pk= user.id)
@@ -267,25 +278,24 @@ def edit_account(request, account_id):
         account_to_edit.save()
     return HttpResponseRedirect('/budgeteer/manageAccounts')
 
-"""The manage_objectives function.
+
+@login_required
+def manage_objectives(request):
+    """The manage_objectives function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that renders the account management page.
     Gets the user accounts from the database.
     Sends the objects fetched in the context variable to the template.
     Keyword arguments:
     request -- the django request object.
-"""
-@login_required
-def manage_objectives(request):
+    """
     user = request.user
     user_objectives = Objective.objects.filter(user = user.id).order_by('deadline')
-
+    username = User.objects.get(id = user.id)
     user_accounts = Account.objects.filter(user = user.id).order_by('name')
 
     if user_objectives is not None:
         for objective in user_objectives:
-            print(objective.deadline)
-            print(datetime.date(datetime.today()))
             if objective.deadline <= datetime.date(datetime.today()):
                 if objective.objective == 'Spend':
                     money_spent = 0.0
@@ -297,7 +307,7 @@ def manage_objectives(request):
                     for transaction in user_transactions:
                         if transaction.account == objective.account:
                             money_spent = money_spent + decimal.Decimal(transaction.amount)
-                    if (money_spent > amount):
+                    if (money_spent > objective.amount):
                         objective.completed = 'N'
                         objective.save()
                     else:
@@ -318,7 +328,10 @@ def manage_objectives(request):
     return render(request, 'budgeteer/manageObjectives.html', context)
 
 
-"""The new_objective function.
+
+@login_required
+def new_objective(request):
+    """The new_objective function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that creates a new objective.
     Receives the objective information in a POST request.
@@ -327,9 +340,7 @@ def manage_objectives(request):
     Redirects to the manage objective page.
     Keyword arguments:
     request -- the django request object.
-"""
-@login_required
-def new_objective(request):
+    """
     user = request.user
     try:
         my_user = User.objects.get(pk = user.id)
@@ -355,7 +366,10 @@ def new_objective(request):
     return HttpResponseRedirect('/budgeteer/manageObjectives')
 
 
-"""The del_objective function.
+
+@login_required
+def del_objective(request):
+    """The del_objective function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that deletes an objective.
     Gets the objective id through POST request and tries to fetch the objective from the database.
@@ -365,10 +379,7 @@ def new_objective(request):
     Redirects to manage objectives page.
     Keyword arguments:
     request -- the django request object which contains the objective id in the POST request.
-"""
-@login_required
-def del_objective(request):
-
+    """
     user = request.user
     try:
         my_user = User.objects.get(pk = user.id)
@@ -387,7 +398,10 @@ def del_objective(request):
         objective_to_delete.delete()
     return HttpResponseRedirect('/budgeteer/manageObjectives')
 
-"""The objective function.
+
+@login_required
+def objective(request, objective_id):
+    """The objective function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that renders the objective detail page.
     Gets the user objective from the database and checks if the user ownes it.
@@ -396,9 +410,7 @@ def del_objective(request):
     Keyword arguments:
     request -- the django request object.
     objective_id -- the objective id.
-"""
-@login_required
-def objective(request, objective_id):
+    """
     user = request.user
     try:
         my_user = User.objects.get(pk= user.id)
@@ -419,7 +431,10 @@ def objective(request, objective_id):
     }
     return render(request, 'budgeteer/editObjective.html', context)
 
-"""The edit_objective function.
+
+@login_required
+def edit_objective(request, objective_id):
+    """The edit_objective function.
     User log in is required. It redirects to the index in case the user is not logged in.
     Function that allows the user to edit an objective.
     Gets the user objective from the database and checks if the user ownes it.
@@ -430,9 +445,7 @@ def objective(request, objective_id):
     Keyword arguments:
     request -- the django request object.
     objective_id -- the objective id.
-"""
-@login_required
-def edit_objective(request, objective_id):
+    """
     user = request.user
     try:
         my_user = User.objects.get(pk= user.id)

@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 
 
 class Account(models.Model):
+    """Model for Account object
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=500)
@@ -15,6 +17,8 @@ class Account(models.Model):
         return self.name
 
 class Transaction(models.Model):
+    """Model for Transaction object
+    """
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(max_length=500)
@@ -24,6 +28,8 @@ class Transaction(models.Model):
         return self.description
 
 class Objective(models.Model):
+    """Model for Objective object
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     deadline = models.DateField()

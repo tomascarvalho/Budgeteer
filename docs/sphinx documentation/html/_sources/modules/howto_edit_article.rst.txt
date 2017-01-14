@@ -1,0 +1,16 @@
+Howto edit an article
+=====================
+
+To edit an article, you need to:
+
+#) login
+
+#) click on the article
+
+#) hit the "Edit" link
+
+#) Edit the article using the form
+
+.. image:: ../article_edit.png
+
+#) hit Save button
