@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
-    url(r'^budgeteer/', include('budgeteer.urls')),
+    url(r'^', include('budgeteer.urls')),
     url(r'^adminbudget/', admin.site.urls),
 ]
 

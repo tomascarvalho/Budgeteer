@@ -18,4 +18,6 @@ urlpatterns = [
     url(r'^del_objective/$', views.del_objective, name='del_objective'),
     url(r'^(?P<objective_id>[0-9]+)/objective/$', views.objective, name='objective'),
     url(r'^(?P<objective_id>[0-9]+)/edit_objective/$', views.edit_objective, name='edit_objective'),
+    url(r'^accounts/login/$', views.index, name='index'),
+
 ]

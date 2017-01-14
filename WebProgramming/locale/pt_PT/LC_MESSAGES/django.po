@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 02:17+0000\n"
+"POT-Creation-Date: 2017-01-14 14:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,6 +146,11 @@ msgstr "Editar"
 msgid "Description:"
 msgstr "Descrição:"
 
+#: budgeteer/templates/budgeteer/editAccount.html:70
+#: budgeteer/templates/budgeteer/manageAccounts.html:85
+msgid "Balance:"
+msgstr "Saldo:"
+
 #: budgeteer/templates/budgeteer/editObjective.html:29
 msgid "Currently Editing Objective"
 msgstr "A Editar o Objectivo"
@@ -252,7 +257,6 @@ msgid "Re-Enter Password:"
 msgstr "Re-Insira a Password"
 
 #: budgeteer/templates/budgeteer/index.html:149
-
 msgid "Sign Up"
 msgstr "Registar"
 
@@ -271,10 +275,6 @@ msgstr "As Suas Contas São"
 #: budgeteer/templates/budgeteer/manageAccounts.html:80
 msgid "Add Account"
 msgstr "Criar Conta"
-
-#: budgeteer/templates/budgeteer/manageAccounts.html:85
-msgid "Balance:"
-msgstr "Saldo:"
 
 #: budgeteer/templates/budgeteer/manageObjectives.html:27
 msgid "Your Current Objectives Are"
