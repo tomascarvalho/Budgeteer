@@ -32,7 +32,7 @@ def log_in(request):
     Keyword arguments:
     request -- the django request object that contains the user email and password that we want to authenticate
     """
-    email = request.POST['email']
+    email = request.POST.get('email')
     try:
         try_user = User.objects.get(email=email)
     except (KeyError, User.DoesNotExist):
@@ -41,7 +41,7 @@ def log_in(request):
         return render(request, 'budgeteer/index.html', {
             'error_message': error_message,
         })
-    user_password = request.POST['password']
+    user_password = request.POST.get('password')
     user = authenticate(username=try_user.username, password=user_password)
     if user is not None:
         login(request, user)
