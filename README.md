@@ -52,19 +52,6 @@ In this section we will analyse each page, as it is viewed by each tested browse
   This page will let the user set different objectives for his accounts or for his total balance. This objectives are also displayed in a table, in which the user will be able to delete, edit and add objectives.
   There is also a form, similar to the other forms that I mentioned above.
  
-## Two features in which I invested more effort
-  As the website is mainly consisted by tables, it was in those tables in which I invested more effort. In particular in this two features: 
-  - Add data to the tables:
-    The user is able to add data to the tables and they will change dynamically. This data is verified in order to make sure that is of the correct type and are the fields that are required are filled. However, as this is not yet saved in a database, when the page is refreshed all the changes are reseted. 
-  - Edit data in the tables:
-    The user is able to edit data in the tables, and the data will also change dynamically. However, as this is not yet saved in a database, when the page is refreshed all the changes are reseted.
-   
-## Objectives for the Second Phase
-  My objectives for the second phase include:
-  - Dynamic chart in the dashboard
-  - Dynamic tables
-  - Notifications when an objective is completed or failed
-  - Log in with an API (Facebook or GMAIL)
-  - And More!
-  
+
+
 
