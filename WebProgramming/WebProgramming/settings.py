@@ -26,6 +26,8 @@ SECRET_KEY = 'yiz*6+q6544_@x1q@yyvq0tpbo18gxssw)n9126s1!e4ilojuy'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+                'localhost',
+                '127.0.0.1',
                 'webprogramming-budgeteer.herokuapp.com',
                 'tomcarvalhoc.com',
                 'www.tomcarvalhoc.com',
