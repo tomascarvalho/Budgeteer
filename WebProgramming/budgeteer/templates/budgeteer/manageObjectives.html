@@ -100,7 +100,7 @@
 
         {% for lang_code, lang_name in languages %}
           {% language lang_code %}
-            <a href="{% url 'index' %}">{{ lang_name }}</a>
+            <a href="{% url 'manageObjectives' %}">{{ lang_name }}</a>
           {% endlanguage %}
         {% endfor %}
     </footer>

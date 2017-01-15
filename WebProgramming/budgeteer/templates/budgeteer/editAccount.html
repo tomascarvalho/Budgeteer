@@ -19,10 +19,10 @@
     <nav class = "navbar">
         <ul class = "ul-menu">
             <li> <a class = "li-menu" href = "{% url 'dashboard' %}"> <img src = "{%static 'imgs/logo1.png' %}" alt = "logo"/> </a></li>
-            <li> <a class = "li-menu" href = "{% url 'dashboard' %}"> Dashboard</a></li>
-            <li> <a class = "li-menu active" href = "{% url 'manageAccounts' %}"> Manage Accounts </a></li>
-            <li> <a class = "li-menu" href = "{% url 'manageObjectives' %}"> Manage Objectives </a></li>
-            <li> <a class = "li-menu" style = "float:right" href = "{% url 'logout' %}"> Log Out!</a></li>
+            <li> <a class = "li-menu" href = "{% url 'dashboard' %}">{% blocktrans %}Dashboard{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu active" href = "{% url 'manageAccounts' %}">{% blocktrans %}Manage Accounts{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu" href = "{% url 'manageObjectives' %}">{% blocktrans %}Manage Objectives{% endblocktrans %}</a></li>
+            <li> <a class = "li-menu" style = "float:right" href = "{% url 'logout' %}">{% blocktrans %}Log Out!{% endblocktrans %}</a></li>
         </ul>
     </nav>
     <div> </div>
@@ -80,7 +80,7 @@
 
         {% for lang_code, lang_name in languages %}
           {% language lang_code %}
-            <a href="{% url 'index' %}">{{ lang_name }}</a>
+            <a href="{% url 'account' account.id %}">{{ lang_name }}</a>
           {% endlanguage %}
         {% endfor %}
     </footer>
