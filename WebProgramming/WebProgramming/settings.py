@@ -138,9 +138,10 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 
 # Extra places for collectstatic to find static files.
-
+static_path = os.path.join(PROJECT_ROOT, 'budgeteer')
+static_path = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'budgeteer/static'),
+    static_path,
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
