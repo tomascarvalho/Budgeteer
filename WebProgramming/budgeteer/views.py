@@ -19,7 +19,7 @@ def index(request):
     request -- the django request object
     """
     if request.user.is_authenticated():
-        HttpResponseRedirect('/budgeteer/dashboard/')
+        return HttpResponseRedirect('/budgeteer/dashboard/')
 
     return render(request, 'budgeteer/index.html')
 
