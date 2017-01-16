@@ -18,6 +18,9 @@ def index(request):
     Keyword arguments:
     request -- the django request object
     """
+    if request.user.is_authenticated():
+        HttpResponseRedirect('/budgeteer/dashboard/')
+
     return render(request, 'budgeteer/index.html')
 
 
