@@ -82,7 +82,7 @@
                 {% csrf_token %}
                 <label>{% trans "Account Name" %}<input id = "name" type ="text" name = "accName" required/></label>
                 <label>{% trans "Description:" %}<input id = "description" type ="text" name ="description"/> </label>
-                <label>{% trans "Balance:" %}<input id = "balance" type = "number" name = "balance" required/> </label>
+                <label>{% trans "Balance:" %}<input id = "balance" type = "number" step="0.01" name = "balance" required/> </label>
                 <label><input id = "addAccountButton" class = "addButton" type = "submit" value = "{% trans "Add" %}" onclick="addAccount()"/></label>
             </form>
         </div>

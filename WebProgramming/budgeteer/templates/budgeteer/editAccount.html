@@ -67,7 +67,7 @@
                 {% csrf_token %}
                 <label> {% trans "Account Name"%} <input id = "name" type ="text" name = "accName" value = "{{ account.name }}" required/></label>
                 <label> {% trans "Description:" %}<input id = "description" type ="text" name ="description" value = "{{ account.description }}"/> </label>
-                <label> {% trans "Balance:" %}<input id = "balance" type = "number" name = "balance" value = "{{ account.balance }}"required/> </label>
+                <label> {% trans "Balance:" %}<input id = "balance" type = "number" step="0.01" name = "balance" value = "{{ account.balance }}"required/> </label>
                 <label><input id = "addAccountButton" class = "addButton" type = "submit" value = "{% trans "Edit" %}" onclick="addAccount()"/></label>
             </form>
         </div>

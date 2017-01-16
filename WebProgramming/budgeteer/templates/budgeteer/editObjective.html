@@ -73,7 +73,7 @@ h<!DOCTYPE html>
                         <option value = "Spend">{% trans "Don't spend more than" %}</option>
                         <option value = "Have">{% trans "Have more than" %}</option>
                     </select>
-                    <label>{% trans "Amount"%}<input id = "amount" type = "number" name = "amount" value = "{{ objective.amount }}"required/></label>
+                    <label>{% trans "Amount"%}<input id = "amount" type = "number" step="0.01" name = "amount" value = "{{ objective.amount }}"required/></label>
                     <select id = "account" name = "account">
                         {% for acc in user_accounts %}
                             <option value  = "{{ acc.id }}">{{ acc.name }}</option>
