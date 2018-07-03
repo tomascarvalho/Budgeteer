@@ -1,1 +1,1 @@
-web: gunicorn WebProgramming/WebProgramming.wsgi --log-file -
+web: gunicorn WebProgramming.wsgi --log-file -
