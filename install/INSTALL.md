@@ -2,6 +2,7 @@ How to Deploy Budgeteer Application @ Local Server
 =================================================
 # Install Python
 You need to have Python installed
+The latest version of Python is recommended
 
 ## Install and Create Virtual Environment
 
