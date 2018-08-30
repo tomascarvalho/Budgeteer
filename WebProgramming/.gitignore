@@ -1,5 +1,3 @@
-staticfiles/
-WebProgramming/staticfiles/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -106,5 +104,3 @@ venv/*
 
 # mypy
 .mypy_cache/
-
-WebProgramming/*.pyc
